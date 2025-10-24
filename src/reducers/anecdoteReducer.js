@@ -17,36 +17,34 @@ const asObject = anecdote => {
     }
 }
 
-
+const Actions = Object.freeze({
+    VOTE: 'VOTE',
+    CREATE: 'CREATE'
+})
 
 export const upvote = id => ({
-    type: 'VOTE',
+    type: Actions.VOTE,
     payload: { id: id }
 })
 
 export const create = content => ({
-    type: 'CREATE',
+    type: Actions.CREATE,
     payload: { anecdote: content }
 })
 
-
-
 const initialState = anecdotesAtStart.map(asObject)
 
-const reducer = (state = initialState, action) => {
-    console.log('state now: ', state)
-    console.log('action', action)
-
+const anecdoteReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'VOTE':
+        case Actions.VOTE:
             return state.map(a => a.id === action.payload.id ? {
                 ...a,
                 votes: a.votes + 1
             } : a)
-        case 'CREATE':
+        case Actions.CREATE:
             return [...state, asObject(action.payload.anecdote)]
     }
     return state
 }
 
-export default reducer
+export default anecdoteReducer
