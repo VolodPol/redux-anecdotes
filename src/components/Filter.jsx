@@ -1,11 +1,11 @@
-import { filterAction } from "../reducers/filterReducer.js";
+import { doFilter } from "../reducers/filterReducer.js";
 import { useDispatch } from "react-redux";
 
 const Filter = () => {
     const dispatch = useDispatch()
 
     const updateFilter = ({ target }) => {
-        dispatch(filterAction(target.value))
+        dispatch(doFilter(target.value))
     }
 
     return (

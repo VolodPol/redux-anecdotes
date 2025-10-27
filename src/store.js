@@ -1,0 +1,12 @@
+import filterReducer from "./reducers/filterReducer.js"
+import anecdoteReducer from './reducers/anecdoteReducer'
+import { configureStore } from "@reduxjs/toolkit"
+
+const store = configureStore({
+    reducer: {
+        filter: filterReducer,
+        anecdotes: anecdoteReducer
+    }
+})
+
+export default store
