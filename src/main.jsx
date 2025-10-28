@@ -9,5 +9,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App/>
     </Provider>
 )
-//Finished 6.9 - 2 hours
-// almost finished 6.13 - 2 hours 15 minutes

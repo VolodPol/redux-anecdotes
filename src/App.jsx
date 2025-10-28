@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { initializeAnecdotes } from "./reducers/anecdoteReducer.js";
-import { removeNotification, setNotification } from "./reducers/notificationReducer.js";
 
 import Notification from "./components/Notification.jsx";
 import Filter from "./components/Filter.jsx";
@@ -15,18 +14,13 @@ const App = () => {
         dispatch(initializeAnecdotes())
     }, [dispatch])
 
-    const notifyUpdate = notification => {
-        dispatch(setNotification(notification))
-        setTimeout(() => dispatch(removeNotification()), 5_000)
-    }
-
     return (
         <div>
             <h2>Anecdotes</h2>
             <Notification/>
             <Filter/>
-            <AnecdoteList notifyUpdate={notifyUpdate}/>
-            <AnecdoteForm notifyUpdate={notifyUpdate}/>
+            <AnecdoteList/>
+            <AnecdoteForm/>
         </div>
     )
 }
