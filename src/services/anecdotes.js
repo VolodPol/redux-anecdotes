@@ -20,4 +20,18 @@ const createNew = async (newAnecdote) => {
     return await response.json()
 }
 
-export { getAll, createNew }
+const voteFor = async (updated) => {
+    const { id } = updated
+    const response = await fetch(`${baseUrl}/${id.toString()}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated)
+    })
+
+    if (!response.ok)
+        throw new Error('Failed to update anecdote\'s votes on server')
+
+    return await response.json()
+}
+
+export { getAll, createNew, voteFor }
