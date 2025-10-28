@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { vote } from "../reducers/anecdoteReducer.js";
-import { Anecdote } from "./Anecdote.jsx";
+import { useDispatch, useSelector } from 'react-redux'
+import { vote } from '../reducers/anecdoteReducer.js'
+import { Anecdote } from './Anecdote.jsx'
 
-export const AnecdoteList = () => {
+export const AnecdoteList = ({ notifyUpdate }) => {
     const dispatch = useDispatch()
     const filter = useSelector(state => state.filter)
     const anecdotes = useSelector(state => state.anecdotes)
@@ -15,7 +15,10 @@ export const AnecdoteList = () => {
         return anecdotes.toSorted((a, b) => b.votes - a.votes)
     }
 
-    const onVote = id => dispatch(vote(id))
+    const onVote = ({ id, content }) => {
+        dispatch(vote(id))
+        notifyUpdate(`You voted '${content}'`)
+    }
 
     return (
         <>
